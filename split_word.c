@@ -1,3 +1,6 @@
+//reference:
+//https://www.w3resource.com/c-programming-exercises/string/c-string-exercise-31.php
+
 #include <stdio.h>
 #include <string.h>
 
