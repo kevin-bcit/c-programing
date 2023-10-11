@@ -11,33 +11,31 @@
  */
 char *storeLine(char **wordList, int charsPerLine, int wordCount, int charCount) {    
     char *result = (char*)malloc(charsPerLine * sizeof(char));
-    int spacesToInsert = charsPerLine - charCount;
-    //printf("charsPerLine %d,charCount %d, wordCount %d\n", charsPerLine, charCount, wordCount);
+
+    //find the spaces neeed by length of a line minus number of words
+    int spaces = charsPerLine - charCount;
     
     if (wordCount == 1) {
-        
-        // Print spaces to the left of the word
+        //case if word is single, we center it
+        // spaces to the left of the word
         // If the number of spaces is odd, add one extra space here
-        //printf("%*s", ((spacesToInsert/2) + (spacesToInsert%2)), "");
-        for(int i=0;i < ((spacesToInsert/2) + (spacesToInsert%2));i++){
+        
+        for(int i=0;i < ((spaces/2) + (spaces%2));i++){
             strcat(result, " ");
         }
-        // Print the word
-        ///printf("%s", wordList[0]);
+        
+        //printf("%s", wordList[0]);
         strcat(result, wordList[0]);
-        // Print spaces to the right of the word
-        //printf("%*s\n", (spacesToInsert/2), "");
-        for(int i=0;i < (spacesToInsert/2);i++){
+        for(int i=0;i < (spaces/2);i++){
             strcat(result, " ");
         }
 
         
     } else { 
-        //find the spaces neeed by length of a line minus number of words
+        
         //divide the space equally and find out the minimum number of space between each words
         //find the reminder for case of uneven distribute, add from first position until n-1 pos
         
-        int spaces = charsPerLine - charCount;
         int avgSpaceBetweenWords = spaces/(wordCount-1);
         int reminderSpace = spaces%(wordCount-1);
 
@@ -52,7 +50,7 @@ char *storeLine(char **wordList, int charsPerLine, int wordCount, int charCount)
 
                 if(reminderSpace > 0){
                     //add the reminding 1 space, from left to right
-                    printf("reminderSpace: %d\n", reminderSpace);
+                    //printf("reminderSpace: %d\n", reminderSpace);
                     strcat(result, " ");
                     reminderSpace--;
                 }
