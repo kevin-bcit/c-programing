@@ -9,8 +9,9 @@
  * wordCount - The number of words for the current line
  * charCount - The number of characters from the words for the current line
  */
-char *storeLine(char **wordList, int charsPerLine, int wordCount, int charCount) {    
-    char *result = (char*)malloc(charsPerLine * sizeof(char));
+const char *storeLine(char **wordList, int charsPerLine, int wordCount, int charCount) {
+    char result[charsPerLine];
+    char *ptresult = result;
 
     //find the spaces neeed by length of a line minus number of words
     int spaces = charsPerLine - charCount;
@@ -59,7 +60,8 @@ char *storeLine(char **wordList, int charsPerLine, int wordCount, int charCount)
             strcat(result, wordList[i]);
         }
     }
-    return result;
+    
+    return ptresult;
 }
 
 int main(int argc, char *argv[]) {
@@ -118,9 +120,9 @@ int main(int argc, char *argv[]) {
         int inputWordLength = strlen(inputWord);
         //printf("inputWordLength %d\n", inputWordLength);
         if ((inputWordLength > charsPerLine) || inputWordLength == 0) {
-            //all error show from here
+            //All error show from here
             //Error will always show before any resulting string
-            //end program immidiately
+            //End program immidiately
             printf("Error. The word processor can't display the output\n");
             return 1;
         }
@@ -148,7 +150,7 @@ int main(int argc, char *argv[]) {
         }
 
 
-        // Allocate memory to fit current input word
+        
         wordList[wordCount] = malloc(inputWordLength * sizeof(char));
         // Add input word to wordList then increment the word count
         strcpy(wordList[wordCount++], inputWord);
@@ -198,7 +200,7 @@ int main(int argc, char *argv[]) {
          return 1;
     }
 
-fclose(outputFile);
+    fclose(outputFile);
 
     return 0;
 }
