@@ -9,13 +9,31 @@
 #include <string.h>
 const int WORD_SIZE = 200;
 
-void reverseString(char **words, int wordCounter){
-    //do reverse for each character
-    for(int i = 0;i< wordCounter;i++){
-        printf("%s", *(words + i));
-        
-    }
+
+void reverseChars(char *str, int n){
+    
+    // Base case
+    if (n < 0)
+        return;
+
+    // Print the character at the current index
+    printf("%c", str[n]);
+    //return str[n];
+
+    // Recursive call for the next index
+    reverseChars(str, n - 1);
 }
+
+// void reverseString(char **words, int wordCounter){
+//     //do reverse for each character
+//     for(int i = 0;i< wordCounter;i++){
+//         //printf("%s", *(words + i));
+
+        
+//     }
+// }
+
+
 
 
 int main(int argc, char *argv[]){
@@ -50,8 +68,8 @@ int main(int argc, char *argv[]){
 
     while((fgets(inputLine, sizeof inputLine, file) != NULL)){
         //printf("%d: %s\n",wordCounter, inputLine);
-
-        strcpy(*(words + wordCounter), inputLine);
+        reverseChars(inputLine, strlen(inputLine));
+        //strcpy(*(words + wordCounter), inputLine);
         //printf("%d: %s\n",wordCounter, *(words + wordCounter)); 
         wordCounter++;
     }
@@ -63,5 +81,5 @@ int main(int argc, char *argv[]){
     //     reverseString(&(words[i]));
     // }
 
-    reverseString(words, wordCounter);
+    //reverseString(words, wordCounter);
 }
